@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  @@map(name: "users")
+
+  id              Int           @default(autoincrement()) @id
+  firstName       String        @db.VarChar(255)
+  password        String        @db.VarChar(255)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  lastName        String?       @db.VarChar(255)
+  userName        String?       @db.VarChar(255) @unique
+  email           String?       @db.VarChar(255) @unique
+  phone           String?       @db.VarChar(255) @unique
+  refreshToken    String?       @db.VarChar(255) @unique
+  isConfirmEmail  Boolean       @default(false)
+  isConfirnPhone  Boolean       @default(false)
+  rooms           RoomOnUser[]
+  myRooms         RoomOnAdmin[]
+  messages        Message[]
+}
+
+model Room {
+  @@map(name: "rooms")
+
+  id          Int           @default(autoincrement()) @id
+  name        String        @db.VarChar(255)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  users       RoomOnUser[]
+  admins      RoomOnAdmin[]
+  messages    Message[]
+}
+
+model Message {
+  @@map(name: "messages")
+
+  id          Int           @default(autoincrement()) @id
+  message     String        @db.VarChar(500)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  userId      Int
+  roomId      Int
+  user        User          @relation(fields: [userId], references: [id])
+  room        Room          @relation(fields: [roomId], references: [id])
+}
+
+model RoomOnUser {
+  @@map(name: "rooms_on_users")
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  userId      Int
+  roomId      Int
+  user        User          @relation(fields: [userId], references: [id])
+  room        Room          @relation(fields: [roomId], references: [id])
+
+  @@id([userId, roomId])
+}
+
+model RoomOnAdmin {
+  @@map(name: "rooms_on_admins")
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  userId      Int
+  roomId      Int
+  user        User          @relation(fields: [userId], references: [id])
+  room        Room          @relation(fields: [roomId], references: [id])
+
+  @@id([userId, roomId])
+}

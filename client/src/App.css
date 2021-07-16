@@ -1,0 +1,44 @@
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.MuiAlert-root {
+  width: 450px !important;
+  margin-bottom: 30px !important;
+}
+
+.MuiToolbar-root {
+  margin-bottom: 30px !important;
+}
+
+.MuiFormControl-root, .ButtonControl {
+  width: 450px !important;
+  margin-bottom: 30px !important;
+}
+
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+  transform: translate(14px, -20px) scale(0.75) !important;
+}
+
+
+::-webkit-scrollbar {
+  background-color: rgb(196, 193, 193);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: dimgray;
+  
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  padding: 20px;
+  height: auto;
+  align-items: center;
+  justify-content: flex-start;
+}

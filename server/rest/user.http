@@ -1,0 +1,32 @@
+POST http://127.0.0.1:5000/api/registration
+Content-Type: application/json
+
+{
+    "firstName": "User4",
+    "email": "user4@mail.ru",
+    "phone": "8-9536-34-56-77",
+    "password": "password"
+}
+###
+
+PATCH  http://127.0.0.1:5000/api/login
+Content-Type: application/json
+
+{
+    "email": "user3@mail.ru",
+    "password": "password"
+}
+###
+
+PATCH  http://127.0.0.1:5000/api/refresh
+
+###
+
+PATCH  http://127.0.0.1:5000/api/logout
+
+###
+
+
+GET   http://127.0.0.1:5000/api/users
+
+###

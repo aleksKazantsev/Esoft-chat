@@ -1,0 +1,46 @@
+POST http://127.0.0.1:5000/api/room
+Content-Type: application/json
+
+{
+    "name": "Room23"
+}
+###
+
+PATCH  http://127.0.0.1:5000/api/room
+Content-Type: application/json
+
+{
+    "where": { "id": 20 },
+    "data": { "name": "Rename Room 20"}
+}
+###
+
+
+DELETE   http://127.0.0.1:5000/api/room
+Content-Type: application/json
+
+{
+    "where": { "id": 21 }
+}
+###
+
+GET   http://127.0.0.1:5000/api/rooms
+###
+
+POST http://127.0.0.1:5000/api/room/user
+Content-Type: application/json
+
+{
+    "id": 22,
+    "userId": 4
+}
+###
+
+DELETE  http://127.0.0.1:5000/api/room/user
+Content-Type: application/json
+
+{
+    "id": 22,
+    "userId": 4
+}
+###
