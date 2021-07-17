@@ -58,6 +58,24 @@ class RoomController {
             throw e
         }
     }
+
+    async addAdminToRoom(request, reply) {
+        try {
+            const { refreshToken } = request.cookies
+            return reply.send(await this._room.addAdminToRoom(request.body, refreshToken))
+        } catch (e) {
+            throw e
+        }
+    }
+
+    async delAdminToRoom(request, reply) {
+        try {
+            const { refreshToken } = request.cookies
+            return reply.send(await this._room.delAdminToRoom(request.body, refreshToken))
+        } catch (e) {
+            throw e
+        }
+    }
 }
 
 module.exports = fp(async (fastify, opts) => {

@@ -2,7 +2,7 @@ POST http://127.0.0.1:5000/api/room
 Content-Type: application/json
 
 {
-    "name": "Room23"
+    "name": "Room24"
 }
 ###
 
@@ -31,8 +31,8 @@ POST http://127.0.0.1:5000/api/room/user
 Content-Type: application/json
 
 {
-    "id": 22,
-    "userId": 4
+    "id": 24,
+    "userId": 5
 }
 ###
 
@@ -40,7 +40,26 @@ DELETE  http://127.0.0.1:5000/api/room/user
 Content-Type: application/json
 
 {
-    "id": 22,
+    "id": 24,
     "userId": 4
+}
+###
+
+
+POST http://127.0.0.1:5000/api/room/admin
+Content-Type: application/json
+
+{
+    "id": 24,
+    "adminId": 3
+}
+###
+
+DELETE  http://127.0.0.1:5000/api/room/admin
+Content-Type: application/json
+
+{
+    "id": 24,
+    "adminId": 3
 }
 ###

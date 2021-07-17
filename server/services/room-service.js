@@ -81,7 +81,7 @@ class RoomService {
     }
 
     async delUserToRoom(data, refreshToken) {
-        const { room, roomOnUser } = this._fastify.prismaClient
+        const { room } = this._fastify.prismaClient
         const token = this._fastify.tokenService
         const validate = token.validateRefreshToken(refreshToken)
         if(!validate) throw createError(401, 'Пользователь не авторизован')
@@ -92,7 +92,41 @@ class RoomService {
         getRoom.admins.forEach(admin => admin.userId === validate.id ? isAdmin = true : null)
         if(!isAdmin) throw createError(403, 'Доступ запрещен')
 
-        return await room.update({ where: { id: data.id }, data: { users: { delete: { where: {userId: data.userId }}}}})
+        return await room.update({ where: { id: data.id }, data: { users: { deleteMany: [{userId: data.userId }]}}})
+    }
+
+    async addAdminToRoom(data, refreshToken) {
+        const { room } = this._fastify.prismaClient
+        const token = this._fastify.tokenService
+        const validate = token.validateRefreshToken(refreshToken)
+        if(!validate) throw createError(401, 'Пользователь не авторизован')
+
+        const getRoom = await room.findUnique({ where: { id: data.id }, include: { admins: true, users: true }})
+
+        let isAdmin = false
+        getRoom.admins.forEach(admin => admin.userId === validate.id ? isAdmin = true : null)
+        if(!isAdmin) throw createError(403, 'Доступ запрещен')
+
+        let isNewAdmin = false
+        getRoom.admins.forEach(roomAdmin => roomAdmin.adminId === data.adminId ? isNewAdmin = true : null)
+        if(isNewAdmin) throw createError(423, 'Администратор уже добавлен в комнату')
+
+        return await room.update({ where: { id: data.id }, data: { admins: { create: { userId: data.adminId }}}})
+    }
+
+    async delAdminToRoom(data, refreshToken) {
+        const { room } = this._fastify.prismaClient
+        const token = this._fastify.tokenService
+        const validate = token.validateRefreshToken(refreshToken)
+        if(!validate) throw createError(401, 'Пользователь не авторизован')
+
+        const getRoom = await room.findUnique({ where: { id: data.id }, include: { admins: true, users: true }})
+
+        let isAdmin = false
+        getRoom.admins.forEach(admin => admin.userId === validate.id ? isAdmin = true : null)
+        if(!isAdmin) throw createError(403, 'Доступ запрещен')
+
+        return await room.update({ where: { id: data.id }, data: { admins: { deleteMany: [{userId: data.adminId }]}}})
     }
 }
 

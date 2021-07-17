@@ -36,4 +36,16 @@ module.exports = async (fastify, opts) => {
         handler: async (request, reply) => fastify.roomController.delUserToRoom(request, reply)
     })
 
+    fastify.route({
+        method: 'POST',
+        url: '/room/admin',
+        handler: async (request, reply) => fastify.roomController.addAdminToRoom(request, reply)
+    })
+
+    fastify.route({
+        method: 'DELETE',
+        url: '/room/admin',
+        handler: async (request, reply) => fastify.roomController.delAdminToRoom(request, reply)
+    })
+
 }
