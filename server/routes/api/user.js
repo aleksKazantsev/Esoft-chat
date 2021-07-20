@@ -20,6 +20,7 @@ module.exports = async (fastify, opts) => {
     fastify.route({
         method: 'GET',
         url: '/users',
+        preHandler: fastify.auth([fastify.verifyJWTandLevel]),
         handler: async (request, reply) => fastify.userController.getUsers(request, reply)
     })
 

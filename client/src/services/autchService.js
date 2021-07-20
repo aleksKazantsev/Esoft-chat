@@ -12,6 +12,10 @@ export default class AuthService {
 
     static async Logout() {
         return await api.patch('/logout')
-    } 
+    }
+
+    static async Refresh() {
+        return await api.patch('/refresh')
+    }
 
 }

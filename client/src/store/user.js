@@ -300,6 +300,17 @@ class User {
         }
     }
 
+    async Refresh() {
+        try {
+            const response = await autchService.Refresh()
+            localStorage.setItem('token', response.data.accessToken)
+            this._data = response.data
+        } catch (e) {
+            if(e.response.status === 401) document.location.replace('/login')
+            console.log(e.response?.data?.message)
+        }
+    }
+
 }
 
 export default new User()
