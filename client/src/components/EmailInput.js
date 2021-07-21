@@ -10,6 +10,7 @@ const PhoneInput = observer(() => {
 
     return (
         <TextField 
+            style={{ marginBottom: 30 }}
             variant='outlined'
             label='Введите почту'
             type='email'

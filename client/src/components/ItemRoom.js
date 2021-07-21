@@ -7,8 +7,7 @@ const ItemRoom = ({ data, index, style }) => {
             <ListItemIcon>
                 <MeetingRoom />
             </ListItemIcon>
-            <ListItemText secondary={data[index].firstName + ' ' + data[index].lastName} />
-            <ListItemText secondary={'(' + data[index].userName + ')'} />
+            <ListItemText secondary={ data[index].name } />
         </ListItem>
     )
 }

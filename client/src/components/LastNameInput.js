@@ -10,6 +10,7 @@ const LastNameInpiut = observer(() => {
 
     return (
         <TextField 
+            style={{ marginBottom: 30 }}
             variant='outlined'
             label='Введите Фамилию'
             type='text'

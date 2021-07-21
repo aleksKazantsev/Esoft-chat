@@ -85,6 +85,7 @@ class User {
                 password: this._formLogin.password, 
                 phone: value
             }
+            this.errorsLogin.login = ''
             return
         }
 
@@ -93,6 +94,7 @@ class User {
                 password: this._formLogin.password,
                 email: value
             }
+            this.errorsLogin.login = ''
             return
         }
 

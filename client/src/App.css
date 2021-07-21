@@ -16,7 +16,6 @@
 
 .MuiFormControl-root, .ButtonControl {
   width: 450px !important;
-  margin-bottom: 30px !important;
 }
 
 .MuiInputLabel-outlined.MuiInputLabel-shrink {

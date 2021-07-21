@@ -10,6 +10,7 @@ const UserNameInpiut = observer(() => {
 
     return (
         <TextField 
+            style={{ marginBottom: 30 }}
             variant='outlined'
             label='Имя пользователя'
             type='text'

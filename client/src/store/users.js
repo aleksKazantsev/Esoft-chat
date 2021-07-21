@@ -20,9 +20,15 @@ class Users {
     }
 
     async fetchUsers() {
-        this._users = new Array(0)
-        const response = await userService.FetchUsers()
-        this._users.push(...response.data)
+        try {
+            this._users = new Array(0)
+            const response = await userService.FetchUsers()
+            this._users.push(...response.data)
+        }
+        catch (e){
+            if(e.response.status === 401) document.location.replace('/login')
+            console.log(e.response?.data?.message)
+        }
     }
 
     /**

@@ -11,6 +11,7 @@ const PasswordInput = observer(() => {
 
     return (
         <TextField 
+            style={{ marginBottom: 30 }}
             variant='outlined'
             label={<span><Icon>lock</Icon></span>}
             type={ visiblity ? 'text' : 'password'} 

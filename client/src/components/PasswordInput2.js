@@ -12,6 +12,7 @@ const PasswordInput2 = observer(() => {
 
     return (
         <TextField 
+            style={{ marginBottom: 30 }}
             variant='outlined'
             label='Повторите пароль'
             type={ visiblity ? 'text' : 'password'} 

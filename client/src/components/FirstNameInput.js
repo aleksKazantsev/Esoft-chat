@@ -9,7 +9,8 @@ const FirstNameInpiut = observer(() => {
     const { firstName: firstNameError } = user.errorsRegistration
 
     return (
-        <TextField 
+        <TextField
+            style={{ marginBottom: 30 }}
             variant='outlined'
             label='Введите Имя'
             type='text'

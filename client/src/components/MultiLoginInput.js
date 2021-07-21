@@ -10,6 +10,7 @@ const MultiLoginInput = observer(() => {
 
     return (
         <TextField 
+            style={{ marginBottom: 30 }}
             variant='outlined'
             label={<span><Icon>person</Icon><Icon>email</Icon><Icon>phone</Icon></span>}
             type={ phone ? 'tel' : 'text' }
@@ -27,7 +28,7 @@ const MultiLoginInput = observer(() => {
             error={loginError ? true : false}
             helperText={loginError}
             autoComplete='off'
-            onChange={event => user.loginData = event.target.value}
+            onInput={event => user.loginData = event.target.value}
         />
     )
 })
