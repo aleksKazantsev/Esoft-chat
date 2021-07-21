@@ -14,7 +14,7 @@ const RoomList = observer(() => {
         <List 
             height={400} 
             width={450}  
-            itemSize={60} 
+            itemSize={80} 
             itemCount={room.myRooms.length} 
             itemData={room.myRooms} 
         >

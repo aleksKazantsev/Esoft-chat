@@ -37,6 +37,16 @@ class Room {
             console.log(e.response?.data?.message)
         }
     }
+
+    async delRoom(whereRoom) {
+        try {
+            const response = await roomService.DeleteRoom(whereRoom)
+            this._myRooms = this._myRooms.filter(room => room.id !== response.data.id)
+        } catch (e) {
+            if(e.response.status === 401) document.location.replace('/login')
+            console.log(e.response?.data?.message)
+        }
+    }
 }
 
 export default new Room()

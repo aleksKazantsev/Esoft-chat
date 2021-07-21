@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { FormControl, TextField, Grow } from '@material-ui/core'
-import { ImportantDevices, PersonAdd } from '@material-ui/icons'
+import { PersonAdd } from '@material-ui/icons'
 import { useState } from 'react'
 import { FixedSizeList as List } from 'react-window'
 import { makeStyles } from '@material-ui/core/styles'
