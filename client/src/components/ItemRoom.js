@@ -7,7 +7,11 @@ import room from '../store/room'
 
 const ItemRoom = observer(({ data, index, style }) => {
     return (
-        <ListItem style={style} button key={index} >
+        <ListItem 
+            style={style} button key={index} 
+            selected={room.getSelected(data[index].id)}
+            onClick={_ => room.idSelected = data[index].id}
+        >
             <ListItemIcon>
                 <MeetingRoom />
             </ListItemIcon>

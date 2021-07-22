@@ -8,7 +8,9 @@ const themes = {
 }
 
 class Theme {
-    _type=themes.DARK
+
+    _type = themes.DARK
+    _navToogle = false
 
     constructor() {
         makeAutoObservable(this)
@@ -29,6 +31,19 @@ class Theme {
                 type: this._type
             }
         })
+    }
+
+    get isCollapse() {
+        return this._navToogle
+    }
+
+    changeToggle() {
+        this._navToogle = !this._navToogle
+    }
+
+    resizeToggle() {
+        const clientWidth = document.documentElement.clientWidth
+        if(clientWidth > 960) this._navToogle = true
     }
 
 }

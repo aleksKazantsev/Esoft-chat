@@ -32,7 +32,7 @@
   
 }
 
-form {
+form, nav, main {
   display: flex;
   flex-direction: column;
   max-width: 480px;
@@ -40,4 +40,22 @@ form {
   height: auto;
   align-items: center;
   justify-content: flex-start;
+}
+
+.NavToggle {
+  display: none !important ;
+}
+
+
+@media (max-width: 960px) {
+  .NavToggle {
+    display: inline-flex !important ;
+  }
+
+  .NavCollapse {
+    position: absolute;
+    z-index: 1;
+    background-color: dimgray;
+  }
+  
 }
