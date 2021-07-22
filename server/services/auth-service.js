@@ -32,10 +32,11 @@ class AuthService {
     async refresh(refreshToken) {
         const user = this._fastify.userService
         const token = this._fastify.tokenService
-        if(!refreshToken) throw createError(401, 'Пользователь не авторизован')
+        if(!refreshToken) throw createError(401, 'Пользователь не авторизован (refresh)')
         const validate = token.validateRefreshToken(refreshToken)
         const dbUser = await user.getUser({ refreshToken: refreshToken })
-        if(!validate || !dbUser) throw createError(401, 'Пользователь не авторизован')
+        if(!validate) throw createError(401, 'Пользователь не авторизован! (validate)')
+        if(!dbUser) throw createError(401, 'Пользователь не авторизован! (dbUser)')
         const dtoUser = {
             id: validate.id,
             firstName: validate.firstName

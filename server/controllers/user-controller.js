@@ -38,7 +38,7 @@ class UserController {
 
     async refresh(request, reply) {
         try {
-            const { refreshToken } = request.cookies
+            const {refreshToken} = request.cookies
             const user = await this._auth.refresh(refreshToken)
             reply.cookie('refreshToken', user.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
             return reply.send(user)

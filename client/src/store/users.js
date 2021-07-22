@@ -26,8 +26,7 @@ class Users {
             this._users.push(...response.data)
         }
         catch (e){
-            if(e.response.status === 401) document.location.replace('/login')
-            console.log(e.response?.data?.message)
+            console.log(e.response.data.message)
         }
     }
 
