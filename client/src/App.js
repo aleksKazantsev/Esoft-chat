@@ -9,6 +9,7 @@ import './App.css'
 import Login from './pages/Login'
 import Registration from './pages/Registration'
 import Chat from './pages/Chat'
+import Transition from './pages/Transition'
 
 
 const App = observer(() => {
@@ -22,6 +23,7 @@ const App = observer(() => {
             <Route path={'/'} exact component={Chat} />
             <Route path={'/login'}  component={Login} />
             <Route path={'/registration'} component={Registration} />
+            <Route path={'/test'} component={Transition} />
           </Switch>
         </div>
       </ThemeProvider>

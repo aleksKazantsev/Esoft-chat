@@ -1,14 +1,16 @@
 import { observer } from 'mobx-react-lite'
-import { ListItem, ListItemIcon, ListItemText, IconButton } from '@material-ui/core'
+import { ListItem, ListItemIcon, ListItemText, IconButton, Slide } from '@material-ui/core'
 import { MeetingRoom, Delete } from '@material-ui/icons'
+import { useState } from 'react'
 
 import room from '../store/room'
 
 
-const ItemRoom = observer(({ data, index, style }) => {
+const ItemRoom = observer(({ data, index }) => {
+    const [inSlide, setInSlide] = useState(true)
     return (
+        <Slide key={data[index].id}  direction='right' in={inSlide} mountOnEnter unmountOnExit>
         <ListItem 
-            style={style} button key={index} 
             selected={room.getSelected(data[index].id)}
             onClick={_ => room.idSelected = data[index].id}
         >
@@ -18,12 +20,17 @@ const ItemRoom = observer(({ data, index, style }) => {
             <ListItemText secondary={ data[index].name } />
             <ListItemIcon>
                 <IconButton 
-                    onClick={_ => room.delRoom({ where: {id: data[index].id} })}
+                    onClick={event => {
+                        event.stopPropagation()
+                        setInSlide(!inSlide)
+                        room.delRoom({ where: {id: data[index].id} })
+                    }}
                 >
                     <Delete />
                 </IconButton>
             </ListItemIcon>
         </ListItem>
+        </Slide>
     )
 })
 

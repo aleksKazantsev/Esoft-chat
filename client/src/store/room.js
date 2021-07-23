@@ -55,6 +55,7 @@ class Room {
                     this._idSelected = idRoomSelected
                 }
             }
+            //return this._myRooms
         } catch (e) {
             if(e.response.status === 401) document.location.replace('/login')
             console.log(e.response?.data?.message)
@@ -77,6 +78,7 @@ class Room {
         try {
             const response = await roomService.DeleteRoom(whereRoom)
             this._myRooms = this._myRooms.filter(room => room.id !== response.data.id)
+
             if(response.data.id === this._idSelected) {
                 this.idSelected = null
                 localStorage.removeItem('idRoomSelected')
@@ -85,6 +87,10 @@ class Room {
             if(e.response.status === 401) document.location.replace('/login')
             console.log(e.response?.data?.message)
         }
+    }
+
+    findRoom(id) {
+        return this._myRooms.find(item => item.id === id)
     }
 }
 

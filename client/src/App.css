@@ -65,8 +65,15 @@ form, nav, main {
 
   .NavCollapse.exiting {
     animation: show-toggle 0.5s reverse;
-  }
-  
+  }  
+}
+
+.todo-exit-active {
+  animation: fade-out 2s forwards;
+}
+
+.todo-enter-active {
+  animation: fade-in 2s forwards;
 }
 
 @keyframes show-toggle{
@@ -76,5 +83,26 @@ form, nav, main {
   100%{
     transform: translateY(0);
   }
+}
 
+@keyframes fade-out{
+  0%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100%{
+    opacity: 0;
+    transform: translateX(500px);
+  }
+}
+
+@keyframes fade-in{
+  0%{
+    opacity: 0;
+    transform: translateX(-500px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

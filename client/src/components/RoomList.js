@@ -1,22 +1,25 @@
 import { observer } from 'mobx-react-lite'
 import { FixedSizeList as List } from 'react-window'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import ItemRoom from './ItemRoom'
 import room from '../store/room'
 
 
 const RoomList = observer(() => {
-    
-    useEffect(() => { room.fetchMyRooms() }, [])
+    const [myRooms, setMyRooms] = useState([])
+    useEffect(() => {
+        room.fetchMyRooms()
+        setMyRooms(room.myRooms)
+    }, [])
     
     return (
         <List 
             height={400} 
             width={450}  
             itemSize={80} 
-            itemCount={room.myRooms.length} 
-            itemData={room.myRooms} 
+            itemCount={myRooms.length} 
+            itemData={myRooms} 
         >
             { ItemRoom }
         </List>
