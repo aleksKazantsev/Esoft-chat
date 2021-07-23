@@ -11,6 +11,7 @@ class Theme {
 
     _type = themes.DARK
     _navToogle = false
+    _Visibly = false
 
     constructor() {
         makeAutoObservable(this)
@@ -43,7 +44,15 @@ class Theme {
 
     resizeToggle() {
         const clientWidth = document.documentElement.clientWidth
-        if(clientWidth > 960) this._navToogle = true
+        if(clientWidth > 960) {
+            this._navToogle = true 
+            this._Visibly = false
+            return
+        }
+        if(!this._Visibly) {
+            this._navToogle = false
+            this._Visibly = true
+        }
     }
 
 }

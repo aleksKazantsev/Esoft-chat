@@ -24,6 +24,10 @@ class Room {
     }
 
     get idSelected() {
+        if(!this._idSelected) {
+            const idRoomSelected = localStorage.getItem('idRoomSelected')
+            if(idRoomSelected) this._idSelected = idRoomSelected
+        }
         return this._idSelected
     }
 

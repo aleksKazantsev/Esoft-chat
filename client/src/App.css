@@ -12,6 +12,9 @@
 
 .MuiToolbar-root {
   margin-bottom: 30px !important;
+  justify-content: center !important;
+  width: 500px;
+  z-index: 2;
 }
 
 .MuiFormControl-root, .ButtonControl {
@@ -46,7 +49,6 @@ form, nav, main {
   display: none !important ;
 }
 
-
 @media (max-width: 960px) {
   .NavToggle {
     display: inline-flex !important ;
@@ -55,7 +57,24 @@ form, nav, main {
   .NavCollapse {
     position: absolute;
     z-index: 1;
-    background-color: dimgray;
+  }
+
+  .NavCollapse.entering {
+    animation: show-toggle 0.5s forwards;
+  }
+
+  .NavCollapse.exiting {
+    animation: show-toggle 0.5s reverse;
   }
   
+}
+
+@keyframes show-toggle{
+  0%{
+    transform: translateY(-500px);
+  }
+  100%{
+    transform: translateY(0);
+  }
+
 }

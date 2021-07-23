@@ -1,13 +1,22 @@
 import { observer } from 'mobx-react-lite'
 import { Toolbar, Button } from '@material-ui/core'
-import { InvertColors, Home, PersonAdd, ExitToApp, Menu } from "@material-ui/icons/"
+import { InvertColors, Home, PersonAdd, ExitToApp, Menu, MenuOpen } from "@material-ui/icons/"
+import { makeStyles } from '@material-ui/core/styles'
 
 import theme from '../store/theme'
 import user from '../store/user'
 
+
+const useStyles = makeStyles((theme) => ({
+    dropdown: {
+        backgroundColor: theme.palette.background.default
+    }
+}))
+
 const AppToolbar = observer(() => {
+    const classes = useStyles()
     return (
-        <Toolbar>
+        <Toolbar className={classes.dropdown}>
             {document.location.pathname === '/registration' ? 
             <Button href='/'>
                 <Home />
@@ -25,7 +34,7 @@ const AppToolbar = observer(() => {
             </Button>
             {document.location.pathname === '/' ?
             <Button className='NavToggle' onClick={_=> theme.changeToggle()}>
-                <Menu />
+                {theme.isCollapse? <MenuOpen /> : <Menu />}
             </Button> : null }
         </Toolbar>
     )
