@@ -1,27 +1,31 @@
 import { observer } from 'mobx-react-lite'
-import { FixedSizeList as List } from 'react-window'
-import { useEffect, useState } from 'react'
+import { useEffect, createRef } from 'react'
+import { TransitionGroup } from "react-transition-group"
+import { Slide, List } from '@material-ui/core'
 
-import ItemRoom from './ItemRoom'
 import room from '../store/room'
+import ItemRoom from "../components/ItemRoom"
 
+
+const ref = createRef()
 
 const RoomList = observer(() => {
-    const [myRooms, setMyRooms] = useState([])
-    useEffect(() => {
-        room.fetchMyRooms()
-        setMyRooms(room.myRooms)
-    }, [])
-    
+    useEffect(() => { room.fetchMyRooms()}, [])
     return (
-        <List 
-            height={400} 
-            width={450}  
-            itemSize={80} 
-            itemCount={myRooms.length} 
-            itemData={myRooms} 
+        <List>
+        <TransitionGroup
+            component={null}
         >
-            { ItemRoom }
+        {room.myRooms.slice().reverse().map(({ id, name }) => (
+            <Slide
+                key={id}
+                direction='right'
+                timeout={1000}
+            >
+            <ItemRoom ref={ref} id={id} name={name} />
+            </Slide>
+        ))}
+        </TransitionGroup>
         </List>
     )
 })

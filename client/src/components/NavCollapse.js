@@ -19,7 +19,7 @@ const NavCollapse = observer(() => {
     const classes = useStyles()
 
     theme.resizeToggle()
-    const handleResize = useCallback(event => theme.resizeToggle(), [])
+    const handleResize = useCallback(_ => theme.resizeToggle(), [])
     useEffect(() => {
         window.addEventListener('resize', handleResize)
         return () => window.removeEventListener('resize', handleResize)

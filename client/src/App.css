@@ -5,6 +5,14 @@
   flex-direction: column;
 }
 
+.MuiList-root {
+  width: 450px;
+  max-height: 600px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+
 .MuiAlert-root {
   width: 450px !important;
   margin-bottom: 30px !important;

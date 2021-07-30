@@ -55,9 +55,8 @@ class Room {
                     this._idSelected = idRoomSelected
                 }
             }
-            //return this._myRooms
         } catch (e) {
-            if(e.response.status === 401) document.location.replace('/login')
+            //if(e.response.status === 401) document.location.replace('/login')
             console.log(e.response?.data?.message)
         }
     }
@@ -69,7 +68,7 @@ class Room {
             this._idSelected = response.data.id
             localStorage.setItem('idRoomSelected', this._idSelected)
         } catch (e) {
-            if(e.response.status === 401) document.location.replace('/login')
+            //if(e.response.status === 401) document.location.replace('/login')
             console.log(e.response?.data?.message)
         }
     }
@@ -84,7 +83,7 @@ class Room {
                 localStorage.removeItem('idRoomSelected')
             }
         } catch (e) {
-            if(e.response.status === 401) document.location.replace('/login')
+            //if(e.response.status === 401) document.location.replace('/login')
             console.log(e.response?.data?.message)
         }
     }

@@ -1,37 +1,34 @@
 import { observer } from 'mobx-react-lite'
-import { ListItem, ListItemIcon, ListItemText, IconButton, Slide } from '@material-ui/core'
+import { ListItem, ListItemIcon, ListItemText, IconButton } from '@material-ui/core'
 import { MeetingRoom, Delete } from '@material-ui/icons'
-import { useState } from 'react'
 
 import room from '../store/room'
 
 
-const ItemRoom = observer(({ data, index }) => {
-    const [inSlide, setInSlide] = useState(true)
+const ItemRoom = observer((props, ref) => {
+
     return (
-        <Slide key={data[index].id}  direction='right' in={inSlide} mountOnEnter unmountOnExit>
         <ListItem 
-            selected={room.getSelected(data[index].id)}
-            onClick={_ => room.idSelected = data[index].id}
+            ref={ref}
+            onClick={_ => room.idSelected = props.id}
+            selected={room.getSelected(props.id)}
         >
             <ListItemIcon>
                 <MeetingRoom />
             </ListItemIcon>
-            <ListItemText secondary={ data[index].name } />
+            <ListItemText secondary={props.name} />
             <ListItemIcon>
-                <IconButton 
+                <IconButton
                     onClick={event => {
                         event.stopPropagation()
-                        setInSlide(!inSlide)
-                        room.delRoom({ where: {id: data[index].id} })
+                        room.delRoom({ where: {id: props.id} })
                     }}
                 >
                     <Delete />
                 </IconButton>
             </ListItemIcon>
         </ListItem>
-        </Slide>
     )
-})
+}, {forwardRef: true})
 
 export default ItemRoom

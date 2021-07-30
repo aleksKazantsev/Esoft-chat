@@ -1,52 +1,39 @@
-import { CSSTransition, TransitionGroup } from "react-transition-group"
-import { Add, Delete } from '@material-ui/icons'
-import { IconButton, TextField, ListItem, ListItemText, ListItemIcon } from '@material-ui/core'
-import { useState } from "react"
+import { TransitionGroup } from "react-transition-group"
+import { Slide, List } from '@material-ui/core'
 import { Fragment } from 'react'
-import { FixedSizeList } from 'react-window'
+import { observer } from 'mobx-react-lite'
+import { useEffect, createRef } from "react"
+
+import SelectUser from "../components/SelectUser"
+import room from "../store/room"
+import ItemRoom from "../components/ItemRoom"
+
+const ref = createRef()
 
 
-const Item = ({ data, index }) => {
-    return (
-            <CSSTransition
-                key={index}
-                timeout={500}
-                classNames='todo'
-            >
-            <ListItem>
-                <ListItemText>{data[index].text}</ListItemText>
-                <ListItemIcon>
-                    <IconButton >
-                        <Delete />
-                    </IconButton>
-                </ListItemIcon>
-            </ListItem>
-            </CSSTransition>
-    )
-}
-const Transition = () => {
-    const [text, setText] = useState('')
-    const [todo, setTodo] = useState([{id: 1, text: 'item 1'}, {id: 2, text: 'item 2'}])
+const Transition = observer(() => {
+    useEffect(() => room.fetchMyRooms(), [])
+
     return (
         <Fragment>
-            <TextField value={text} onInput={e => setText(e.target.value)}/>
-            <IconButton onClick={_ => setTodo([...todo, {id: Date.now(), text }])}>
-                <Add />
-            </IconButton>
-            <TransitionGroup>
-            <FixedSizeList
-                height={400} 
-                width={450}  
-                itemSize={80} 
-                itemCount={todo.length} 
-                itemData={todo} 
+            <SelectUser/>
+            <List>
+            <TransitionGroup
+                component={null}
             >
-                
-                {Item}
-            </FixedSizeList>
+            {room.myRooms.map(({ id, name }) => (
+                <Slide
+                    key={id}
+                    direction='right'
+                    timeout={1000}
+                >
+                <ItemRoom ref={ref} id={id} name={name} />
+                </Slide>
+            ))}
             </TransitionGroup>
+            </List>
         </Fragment>
     )
-}
+})
 
 export default Transition

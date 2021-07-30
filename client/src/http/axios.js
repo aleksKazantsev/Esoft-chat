@@ -18,6 +18,7 @@ api.interceptors.response.use(config => {
     const originalRequest = error.config
     if(error.response.status === 401 && error.config && !error.config._isRetry) {
         originalRequest._isRetry = true
+        if (originalRequest.url === '/refresh') document.location.replace('/login')
         try {
             const response = await api.patch('/refresh')
             localStorage.setItem('token', response.data.accessToken)
