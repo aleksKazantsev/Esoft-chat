@@ -29,4 +29,10 @@ module.exports = async (fastify, opts) => {
         url: '/logout',
         handler: async (request, reply) => fastify.userController.logout(request, reply)
     })
+
+    fastify.route({
+        method: 'GET',
+        url: '/user/:userId',
+        handler: async (request, reply) => fastify.userController.getUser(request, reply)
+    })
 }

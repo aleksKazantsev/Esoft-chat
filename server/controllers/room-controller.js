@@ -76,6 +76,15 @@ class RoomController {
             throw e
         }
     }
+
+    async getRoom(request, reply) {
+        try {
+            const { refreshToken } = request.cookies
+            return reply.send(await this._room.getRoom(request.params.roomId, refreshToken))
+        } catch (e) {
+            throw e
+        }
+    }
 }
 
 module.exports = fp(async (fastify, opts) => {

@@ -5,6 +5,15 @@
   flex-direction: column;
 }
 
+.RoomTabItem {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  min-height: 450px;
+  max-height: 600px;
+
+}
+
 .MuiList-root {
   width: 450px;
   max-height: 600px;
@@ -12,6 +21,9 @@
   overflow-y: auto;
 }
 
+.MuiTabs-flexContainer {
+  height: 75px;
+}
 
 .MuiAlert-root {
   width: 450px !important;
@@ -43,14 +55,19 @@
   
 }
 
-form, nav, main {
+form, nav {
   display: flex;
   flex-direction: column;
-  max-width: 480px;
+  width: 480px;
   padding: 20px;
   height: auto;
   align-items: center;
   justify-content: flex-start;
+}
+
+main {
+  padding-top: 20px;
+  min-width: 480px;
 }
 
 .NavToggle {
@@ -76,14 +93,6 @@ form, nav, main {
   }  
 }
 
-.todo-exit-active {
-  animation: fade-out 2s forwards;
-}
-
-.todo-enter-active {
-  animation: fade-in 2s forwards;
-}
-
 @keyframes show-toggle{
   0%{
     transform: translateY(-500px);
@@ -91,6 +100,14 @@ form, nav, main {
   100%{
     transform: translateY(0);
   }
+}
+
+.todo-exit-active {
+  animation: fade-out 2s forwards;
+}
+
+.todo-enter-active {
+  animation: fade-in 2s forwards;
 }
 
 @keyframes fade-out{

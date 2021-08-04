@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite'
-import { Fragment } from 'react'
 import { Button } from '@material-ui/core'
 import { Fingerprint } from '@material-ui/icons'
 import Alert from '@material-ui/lab/Alert'
@@ -13,7 +12,7 @@ const Login = observer(() => {
     const { userName, phone, email, password } = user.loginData
     
     return (
-        <Fragment>
+        <form>
             { user.serverLoginError 
                 ? <Alert severity='error'>{ user.serverLoginError }</Alert> 
                 : null 
@@ -29,7 +28,7 @@ const Login = observer(() => {
             >
                 <Fingerprint />
             </Button>
-        </Fragment>
+        </form>
     )
 })
 

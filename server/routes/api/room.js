@@ -48,4 +48,10 @@ module.exports = async (fastify, opts) => {
         handler: async (request, reply) => fastify.roomController.delAdminToRoom(request, reply)
     })
 
+    fastify.route({
+        method: 'GET',
+        url: '/room/:roomId',
+        handler: async (request, reply) => fastify.roomController.getRoom(request, reply)
+    })
+
 }

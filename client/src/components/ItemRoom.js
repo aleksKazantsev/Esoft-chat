@@ -9,8 +9,12 @@ const ItemRoom = observer((props, ref) => {
 
     return (
         <ListItem 
+            button
             ref={ref}
-            onClick={_ => room.idSelected = props.id}
+            onClick={_ => {
+                room.idSelected = props.id
+                room.fetchSelectedRoom()
+            }}
             selected={room.getSelected(props.id)}
         >
             <ListItemIcon>

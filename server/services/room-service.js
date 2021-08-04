@@ -128,6 +128,24 @@ class RoomService {
 
         return await room.update({ where: { id: data.id }, data: { admins: { deleteMany: [{userId: data.adminId }]}}})
     }
+
+    async getRoom(roomId, refreshToken) {
+        const { room } = this._fastify.prismaClient
+        const token = this._fastify.tokenService
+        const validate = token.validateRefreshToken(refreshToken)
+        if(!validate) throw createError(401, 'Пользователь не авторизован')
+
+        const getActiveRoom = await room.findUnique({ 
+            where: { id: Number(roomId) }, 
+            include: { admins: true, users: true }
+        })
+
+        let isAdmin = false
+        getActiveRoom.admins.forEach(admin => admin.userId === validate.id ? isAdmin = true : null)
+        if(!isAdmin) throw createError(403, 'Доступ запрещен')
+
+        return getActiveRoom
+    }
 }
 
 module.exports = fp(async (fastify, opts) => {

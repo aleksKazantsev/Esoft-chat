@@ -23,7 +23,7 @@ export default class RoomService {
     }
 
     static async DelUserToRoom(data) {
-        return await api.delete('/room/user', data)
+        return await api.delete('/room/user', {data: data})
     }
 
     static async AddAdminToRoom(data) {
@@ -32,5 +32,9 @@ export default class RoomService {
 
     static async DelAdminToRoom(data) {
         return await api.delete('/room/admin', data)
+    }
+
+    static async FetchRoom(idRoom) {
+        return await api.get(`/room/${idRoom}`)
     }
 }

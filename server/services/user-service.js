@@ -8,8 +8,9 @@ class UserService {
 
     async getUser(data) {
         const { user } = this._client
-        const { userName, email, phone, refreshToken } = data
+        const { userName, email, phone, refreshToken, id } = data
 
+        if(id) return await user.findUnique({ where: { id: Number(id)}})
         if(userName) return await user.findUnique({ where: { userName: userName } })
         if(email) return await user.findUnique({ where: { email: email } })
         if(phone) return await user.findUnique({ where: { phone: phone } })

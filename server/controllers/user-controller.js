@@ -56,6 +56,15 @@ class UserController {
         }
     }
 
+    async getUser(request, reply) {
+        try {
+            const user = await this._user.getUser({id: request.params.userId})
+            return reply.send(user)
+        } catch (e) {
+            throw e
+        }
+    }
+
 }
 
 module.exports = fp(async (fastify, opts) => {

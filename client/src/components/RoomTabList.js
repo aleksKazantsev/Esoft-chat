@@ -3,8 +3,10 @@ import { makeStyles, useTheme } from '@material-ui/core/styles'
 import { useState } from 'react'
 import { AppBar, Tabs, Tab } from '@material-ui/core'
 import SwipeableViews from 'react-swipeable-views'
+import { Forum, People, Settings } from '@material-ui/icons'
 
 import RoomTabItem from './RoomTabItem'
+import UserList from './UserList'
 
 
 RoomTabItem.propTypes = {
@@ -46,9 +48,9 @@ const RoomTabList = () => {
                     variant='fullWidth'
                     aria-label='full width tabs example'
                 >
-                    <Tab label='Item One' {...allProps(0)} />
-                    <Tab label='Item Two' {...allProps(1)} />
-                    <Tab label='Item Three' {...allProps(2)} />
+                    <Tab label={<Forum/>} {...allProps(0)} />
+                    <Tab label={<People/>} {...allProps(1)} />
+                    <Tab label={<Settings/>} {...allProps(2)} />
                 </Tabs>
             </AppBar>
             <SwipeableViews
@@ -60,7 +62,7 @@ const RoomTabList = () => {
                     Item One
                 </RoomTabItem>
                 <RoomTabItem value={value} index={1} dir={theme.direction}>
-                    Item Two
+                    <UserList />
                 </RoomTabItem>
                 <RoomTabItem value={value} index={2} dir={theme.direction}>
                     Item Three
